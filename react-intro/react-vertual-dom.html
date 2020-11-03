@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React-Intro</title>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script>
+        (function(){
+            let count = 0;
+            function onDocumentLoad(){
+                let btnRender = document.getElementById('btnRender');
+                btnRender.addEventListener('click',onBtnRenderClick);
+            }
+            function onBtnRenderClick(){
+                ++count;
+                //using actual DOM
+                document.getElementById('spanCounter').innerText = count;
+
+                //using virtual DOM
+                let h1 = React.createElement('h1', { id: 'header-1' }, 'Welcome to React.js! - ' + count);
+                ReactDOM.render(h1, document.getElementById('root'));
+            }
+            window.addEventListener('load', onDocumentLoad);
+        })();
+    </script>
+</head>
+<body>
+    <input type="button" value="Render" id="btnRender">
+    <div>
+        <span>Counter :</span>
+        <span id="spanCounter">0</span>
+    </div>
+    <div id="root"></div>
+</body>
+</html>

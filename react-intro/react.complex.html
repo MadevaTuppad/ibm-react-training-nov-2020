@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React-Intro</title>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script>
+        (function(){
+            let count = 0;
+            function onDocumentLoad(){
+                let btnRender = document.getElementById('btnRender');
+                btnRender.addEventListener('click',onBtnRenderClick);
+            }
+            function onBtnRenderClick(){
+                ++count;
+               
+                //using virtual DOM
+                const appEle = React.createElement('div', null, 
+                    React.createElement('h1', null, 'React.js!'), 
+                    React.createElement('hr'),
+                    React.createElement('div',null,
+                    React.createElement('span', null, 'Counter: '),
+                    React.createElement('span', null,count)),
+                    React.createElement('section', null, 
+                        React.createElement('h3', null, 'Introduction'),
+                        React.createElement('p', null, 'Dolore nulla velit cupidatat occaecat sint dolor excepteur qui ipsum voluptate aliquip. Id sunt irure culpa et et. Cillum quis aliqua sint aliquip ea. Consequat cupidatat et deserunt laboris ex aute occaecat adipisicing. Enim veniam irure cillum velit sint do sunt deserunt anim fugiat. Amet aliqua cupidatat incididunt amet sit sunt. Laboris sit exercitation amet ea occaecat ea dolore pariatur sunt dolore.'),
+                        React.createElement('p', null, 'Veniam nostrud adipisicing et magna. Sint aute quis officia non quis. Consequat mollit cupidatat mollit Lorem esse.'),
+                        React.createElement('p', null, 'Duis ut voluptate eu deserunt nisi et eu sunt minim sunt cillum. Consequat elit laborum ad sit fugiat ad Lorem laboris consectetur proident dolore quis consectetur. Culpa labore officia mollit qui eu cupidatat do pariatur anim officia officia. Lorem aliquip eu in sunt. Eu non eu laboris non anim excepteur laborum irure esse proident ut laboris. Incididunt magna eiusmod occaecat occaecat veniam.'),
+                    ),
+                    React.createElement('section', null, 
+                        React.createElement('h3', null, 'Advantages'),
+                        React.createElement('ol', null, 
+                            React.createElement('li', null, 'Declarative'),
+                            React.createElement('li', null, 'Efficient'),
+                        )
+                    )
+                );
+
+                ReactDOM.render(appEle, document.getElementById('root'));
+            }
+            window.addEventListener('load', onDocumentLoad);
+        })();
+    </script>
+</head>
+<body>
+    <input type="button" value="Render" id="btnRender">
+    
+    <div id="root"></div>
+</body>
+</html>

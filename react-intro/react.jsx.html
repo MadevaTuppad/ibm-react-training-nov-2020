@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React-Intro</title>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script type="text/babel">
+     
+            let count = 0;
+            function onDocumentLoad(){
+                let btnRender = document.getElementById('btnRender');
+                btnRender.addEventListener('click',onBtnRenderClick);
+            }
+            function onBtnRenderClick(){
+                console.log("btn clicked")
+                ++count;
+               
+                //using virtual DOM
+                const appEle = <div>
+                    
+                    <h1>React.js!</h1>
+                    <hr/>
+                    <div>
+                        <span>counter:</span>
+                        <span>{count}</span>
+
+                        </div>
+
+                        <section>
+                            <h3>Introduction</h3>
+                            <p>Dolore nulla velit cupidatat occaecat sint dolor excepteur qui ipsum voluptate aliquip. Id sunt irure culpa et et. Cillum quis aliqua sint aliquip ea. Consequat cupidatat et deserunt laboris ex aute occaecat adipisicing. Enim veniam irure cillum velit sint do sunt deserunt anim fugiat. Amet aliqua cupidatat incididunt amet sit sunt. Laboris sit exercitation amet ea occaecat ea dolore pariatur sunt dolore.</p>
+                            <p>Dolore nulla velit cupidatat occaecat sint dolor excepteur qui ipsum voluptate aliquip. Id sunt irure culpa et et. Cillum quis aliqua sint aliquip ea. Consequat cupidatat et deserunt laboris ex aute occaecat adipisicing. Enim veniam irure cillum velit sint do sunt deserunt anim fugiat. Amet aliqua cupidatat incididunt amet sit sunt. Laboris sit exercitation amet ea occaecat ea dolore pariatur sunt dolore.</p>
+                            <p>Dolore nulla velit cupidatat occaecat sint dolor excepteur qui ipsum voluptate aliquip. Id sunt irure culpa et et. Cillum quis aliqua sint aliquip ea. Consequat cupidatat et deserunt laboris ex aute occaecat adipisicing. Enim veniam irure cillum velit sint do sunt deserunt anim fugiat. Amet aliqua cupidatat incididunt amet sit sunt. Laboris sit exercitation amet ea occaecat ea dolore pariatur sunt dolore.</p>
+                            </section>
+
+                            <section>
+                            <h3>Advantages</h3>
+                            <p>Dolore nulla velit cupidatat occaecat sint dolor excepteur qui ipsum voluptate aliquip. Id sunt irure culpa et et. Cillum quis aliqua sint aliquip ea. Consequat cupidatat et deserunt laboris ex aute occaecat adipisicing. Enim veniam irure cillum velit sint do sunt deserunt anim fugiat. Amet aliqua cupidatat incididunt amet sit sunt. Laboris sit exercitation amet ea occaecat ea dolore pariatur sunt dolore.</p>
+                            <p>Dolore nulla velit cupidatat occaecat sint dolor excepteur qui ipsum voluptate aliquip. Id sunt irure culpa et et. Cillum quis aliqua sint aliquip ea. Consequat cupidatat et deserunt laboris ex aute occaecat adipisicing. Enim veniam irure cillum velit sint do sunt deserunt anim fugiat. Amet aliqua cupidatat incididunt amet sit sunt. Laboris sit exercitation amet ea occaecat ea dolore pariatur sunt dolore.</p>
+                            <p>Dolore nulla velit cupidatat occaecat sint dolor excepteur qui ipsum voluptate aliquip. Id sunt irure culpa et et. Cillum quis aliqua sint aliquip ea. Consequat cupidatat et deserunt laboris ex aute occaecat adipisicing. Enim veniam irure cillum velit sint do sunt deserunt anim fugiat. Amet aliqua cupidatat incididunt amet sit sunt. Laboris sit exercitation amet ea occaecat ea dolore pariatur sunt dolore.</p>
+                            </section>
+                    
+                    </div>
+                    ReactDOM.render(appEle, document.getElementById('root'));
+
+
+            }
+            window.addEventListener('load', onDocumentLoad);
+
+    </script>
+</head>
+<body>
+    <input type="button" value="Render" id="btnRender">
+    
+    <div id="root"></div>
+</body>
+</html>
