@@ -4,15 +4,12 @@
   <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   <body>
   
-    <div id="react"></div>
+    <div id="root"></div>
 
     <script type="text/babel">
-      class Welcome extends React.Component {
-        render() {
-          return <h1>Welcome to reactJs!</h1>
-        }
-      }
-      ReactDOM.render(<Welcome />, document.getElementById('react'))
+
+    var h1 =React.createElement('h1',{id:'header-1'},'Welcome to reatjs');
+      ReactDOM.render(h1, document.getElementById('root'))
     </script>
   </body>
 </html>
