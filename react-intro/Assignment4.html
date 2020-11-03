@@ -14,33 +14,38 @@
 
 
             state = {
-                prod: '',
-                productNames: []
+                item: '',
+                products: [],
             }
 
             onChangeProduct = (evt) => {
                 const { value } = evt.target;
-                this.state.setState({ prod: value })
+                console.log(value)
+                this.setState({ item: value })
             }
+
+
             onClickAdd = () => {
-                let prods = this.state.productNames;
-                prods.push(this.state.prod)
-                this.state.setState({
-                    prod: value,
-                    productNames: prods
+                let { item } = this.state;
+                let {products}=this.state;
+                products.push(item)
+                console.log(products)
+                this.setState({
+                    item: '',
+                    products: products
                 })
             }
             render() {
-    
-                const productNames = this.state.productNames
-                const productItems = productNames.map((productName, index) => (<li key={index}>{productName}</li>));
+
+                const { products } = this.state
+                const productItems = products.map((productName, index) => (<li key={index}>{productName}</li>));
                 return (
                     <div>
                         <h1>Products</h1>
                         <hr />
                         <label>Product Name :</label>
-                        <input type="text"  onChange={this.onChangeProduct}/>
-                        <input type="button" value="Add Product" onClick={this.onClickAdd}/>
+                        <input type="text" onChange={this.onChangeProduct} value={this.state.item}/>
+                        <input type="button" value="Add Product" onClick={this.onClickAdd} />
                         <ol>
                             {productItems}
                         </ol>
