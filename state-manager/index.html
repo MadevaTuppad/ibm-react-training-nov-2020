@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Manager</title>
+    <script src="state-manager.js"></script>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script type="text/babel">
+
+        var SpinnerReducer = function (currentState = 0, action) {
+            if (action.type == "INCREEMENT") return currentState + (action.payload || 1);
+            if (action.type == "DECREEMENT") return currentState - (action.payload || 1);
+            return currentState;
+
+        }
+
+        
+        const spinnerActionCreators = {
+            increment(delta){
+                const action = { type : 'INCREMENT', payload : delta };
+                return action;
+            },
+            decrement(delta){
+                const action = { type : 'DECREMENT', payload : delta };
+                return action;
+            }
+        }
+        const store = StateManager.createStore(SpinnerReducer);
+        console.log(store);
+
+        class Spinner extends React.Component {
+            state = {
+                delta: 0
+            }
+
+            onIncreement = () => {
+                this.props.store.dispatch({ type: "INCREEMENT", payload: this.state.delta });
+            }
+            onDecreement = () => {
+                this.props.store.dispatch({ type: "DECREEMENT", payload: this.state.delta });
+            }
+
+            onSchangeDelta = (evt) => {
+                const { value } = evt.target;
+                console.log(value)
+                this.setState({ delta: parseInt(value) });
+
+            }
+            render() {
+                const { store } = this.props;
+                console.log(store.getState())
+                return (<div>
+                    <h3>Spinner</h3>
+                    <hr />
+
+                    <label>Delta:</label>
+                    <br />
+                    <input type="number" onChange={this.onSchangeDelta} />
+                    <br />
+                    <input type="button" value="Decreement" onClick={this.onDecreement} />
+                    <span>[ {store.getState()} ]</span>
+                    <input type="button" value="Increement" onClick={this.onIncreement} /></div>
+                )
+            }
+
+        }
+
+
+
+
+
+        let spinnerFunction = function () {
+
+            ReactDOM.render(<Spinner store={store} {...spinnerActionCreators}/>, document.getElementById('root'))
+
+        }
+        spinnerFunction();
+        store.subscribe(spinnerFunction);
+
+    </script>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+</html>

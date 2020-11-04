@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>State Manager</title>
+    <script src="state-manager.js"></script>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <!-- 
+        1. initial version
+        2. introducing action creators
+        3. simplying passing the action creator methods to the component
+        4. removing dependency on the 'store' in the component
+        5. introducing action dispatchers
+        6. refactoring the component
+        7. generalizing the 'bindActionCreators'
+        8. refactoring 'bindActionCreators' to state-manager.js
+     -->
+    <script type="text/babel">
+        class Calculator extends React.Component {
+            state = {
+                input1: 0,
+                input2:0
+            };
+            render() {
+                const { value, add, substract,multiply,devide } = this.props;
+                const {input1,input2}=this.state
+                return (<div>
+                    <h1>Calculator</h1>
+                    <hr />
+                    <input type="number"  onChange={ evt => this.setState({ input1 : parseInt(evt.target.value)})} />
+                    <input type="number" onChange={ evt => this.setState({ input2 : parseInt(evt.target.value)})} />
+                    <br />
+                    <input type="button" value="Add" onClick={() => add(input1,input2)} />
+                    <input type="button" value="Subtract" onClick={() => substract(input1,input2)}/>
+                    <input type="button" value="Multiply"onClick={() => multiply(input1,input2)} />
+                    <input type="button" value="Divide" onClick={() => devide(input1,input2)} />
+                    <div>[ {value}]</div>
+                </div>
+                )
+            }
+        }
+
+   
+        function calculatorReducer(currentState = 0, action) {
+            if (action.type === 'ADD') return action.payload.input1+action.payload.input2;
+            if (action.type === 'SUBSTRACT') return action.payload.input1-action.payload.input2;
+            if (action.type === 'MULTIPLY') return action.payload.input1*action.payload.input2;
+
+            if (action.type === 'DEVIDE') {
+                if(action.payload.input2!==0)
+                   return action.payload.input1/action.payload.input2;
+                   else
+                   throw new Error("Devide by 0 is not possible");
+            }
+
+            return currentState;
+        }
+
+   
+
+        const calculatorActionCreators = {
+            add(input1,input2) {
+                const action = { type: 'ADD', payload:{input1:input1,input2:input2} };
+                return action;
+            },
+            substract(input1,input2) {
+                const action = { type: 'SUBSTRACT',payload:{input1:input1,input2:input2} };
+                return action;
+            },
+            multiply(input1,input2) {
+                const action = { type: 'MULTIPLY',payload:{input1:input1,input2:input2} };
+                return action;
+            },
+            devide(input1,input2) {
+                const action = { type: 'DEVIDE', payload:{input1:input1,input2:input2}};
+                return action;
+            }
+        }
+
+        const store = StateManager.createStore(calculatorReducer);
+
+        const calActionDispatchers = StateManager.bindActionCreators(calculatorActionCreators, store.dispatch);
+
+        function renderCal() {
+
+            const value = store.getState();
+
+            ReactDOM.render(
+                <Calculator value={value} {...calActionDispatchers} />
+                , document.getElementById('root'));
+        }
+        renderCal();
+        store.subscribe(renderCal);
+    </script>
+</head>
+
+<body>
+    <div id="root">
+
+
+    </div>
+</body>
+
+</html>
