@@ -16,9 +16,10 @@ class ProductEditor extends Component {
     onAddNewProductClick = () => {
         const { addNew,categories } = this.props,
             { name, description, price ,category} = this.state;
+            console.log(' selected cat id is  ',category)
             let selectedCatgoy=category;
             if(categories && categories.length>0){
-                let catg= categories.find(cat=>cat.id===selectedCatgoy)
+                let catg= categories.find(cat=>cat.id===parseInt(category))
                 selectedCatgoy=catg?catg.name:categories[0].name
             }
         addNew(name, description, price,selectedCatgoy);
