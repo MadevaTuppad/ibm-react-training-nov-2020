@@ -17,6 +17,9 @@ function productsReducer(currentState = [], action) {
         const newState = currentState.filter(p => !productsToRemove.find(prod => prod.id === p.id));
         return newState;
     }
+    if (action.type === 'INIT_PRODUCTS'){
+        return action.payload;
+    }
     return currentState;
 }
 

@@ -1,10 +1,30 @@
-let newCategoryId = 0;
+import catagoriesApi from '../services/catagoriesApi';
+import load from './load';
 const categoryActionCreators = { 
     addNew(categoryName){
-        const newCategory = { id : ++newCategoryId, name : categoryName};
-        const action = { type : 'ADD_CATEGORY', payload : newCategory };
-        return action;
+       
+
+        return function(dispatch){
+            const newCategoryData = { id : 0, name : categoryName};
+            catagoriesApi
+                .save(newCategoryData)
+                .then(newCategory => {
+                    const action = { type : 'ADD_CATEGORY', payload : newCategory };
+                    dispatch(action);
+                })
+        };
+
+
+    },
+    setSelected(categoryData){
+        return function(dispatch){
+           
+                    const action = { type : 'SET_SELECTED_CATEGORY', payload : categoryData};
+                    dispatch(action);
+              
+        };
+
     }
 }
 
-export default categoryActionCreators;
+export default {...categoryActionCreators, load};

@@ -1,16 +1,10 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore } from 'redux';
+import rootMiddleware from './middlewares';
+import rootReducer from '../reducers';
 
-import productsReducer from '../reducers/productsReducer';
-import categoriesReducer from '../reducers/categoriesReducer';
+const store = createStore(
+  rootReducer,
+  rootMiddleware
+);
 
-const rootReducer = combineReducers({
-    products : productsReducer,
-    categories : categoriesReducer
-});
-
-//const store = createStore(productsReducer);
-//const store = createStore(categoriesReducer);
-
-const store = createStore(rootReducer);
-// store state = { products : [], categories : []}
 export default store;

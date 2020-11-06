@@ -7,12 +7,6 @@ class ProductEditor extends Component {
         price: 0,
         category:''
     };
-    componentDidMount() {
-        const   {categories}=this.props;
-        this.setState({
-            category: categories && categories.lngth>0?categories[0].name:''
-        })
-    }
     onAddNewProductClick = () => {
         const { addNew,categories } = this.props,
             { name, description, price ,category} = this.state;
