@@ -50,3 +50,8 @@ li{
 .stats{
     font-size: 18pt;
 }
+
+.addToCart{
+    color: orange;
+    float: right;
+}
