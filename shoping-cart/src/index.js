@@ -16,7 +16,7 @@ ReactDOM.render(
     <Provider store={store}>
 
 
-    <h1>Shoping Cart App</h1>
+    <h1>Shopping Cart App</h1>
         <div>
           <span>
           </span>
