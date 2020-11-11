@@ -1,22 +1,17 @@
 {
-  "categories": [
-    {
-      "id": 1,
-      "name": "Stationary"
-    },
-    {
-      "id": 2,
-      "name": "Grocery"
-    },
-    {
-      "id": 3,
-      "name": "Utencils"
-    },
-    {
-      "id": 4,
-      "name": "Utensil"
-    }
-  ],
+  "cart": {
+    "totalProductCount": 2,
+    "cartDetails": [
+      {
+        "productId": 2,
+        "productCount": 1
+      },
+      {
+        "productId": 3,
+        "productCount": 1
+      }
+    ]
+  },
   "products": [
     {
       "id": 2,
